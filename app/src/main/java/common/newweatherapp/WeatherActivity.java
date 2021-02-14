@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 import com.redorigami.simpleweather.R;
 
-public class WeatherActivity extends AppCompatActivity {
+public class WeatherActivity extends AppCompatActivity implements Runnable {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,28 +38,28 @@ public class WeatherActivity extends AppCompatActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 	    if(item.getItemId() == R.id.change_city){
-	        showInputDialog();
+	        run();
 	    }
 	    return false;
 		
 	}
 
-	
-	private void showInputDialog(){
-	    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    builder.setTitle("Cambiar Ciudad");
-	    final EditText input = new EditText(this);
-	    input.setInputType(InputType.TYPE_CLASS_TEXT);
-	    builder.setView(input);
-	    builder.setPositiveButton("Vale", new DialogInterface.OnClickListener() {
-	        @Override
-	        public void onClick(DialogInterface dialog, int which) {
-	            changeCity(input.getText().toString());
-	        }
-	    });
-	    builder.show();
+
+	public void run() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("Choose City");
+		final EditText input = new EditText(this);
+		input.setInputType(InputType.TYPE_CLASS_TEXT);
+		builder.setView(input);
+		builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				changeCity(input.getText().toString());
+			}
+		});
+		builder.show();
 	}
-	 
+
 	public void changeCity(String city){
 	    WeatherFragment wf = (WeatherFragment)getSupportFragmentManager()
 	                            .findFragmentById(R.id.container);

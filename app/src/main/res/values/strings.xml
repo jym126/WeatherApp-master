@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Simple Weather</string>
-    <string name="change_city">Change city</string>
+    <string name="change_city">Choose city</string>
  
     <!-- Put your own APP ID here -->
     <string name="open_weather_maps_app_id">88b34f907bd95a381781237ca0fb516a</string>
@@ -17,6 +17,6 @@
     <string name="weather_thunder">&#xf01e;</string>
     <string name="weather_drizzle">&#xf01c;</string>
      
-    <string name="place_not_found">Sorry, no weather data found.</string>    
+    <string name="place_not_found">Sorry, no weather data found.</string>
 
 </resources>

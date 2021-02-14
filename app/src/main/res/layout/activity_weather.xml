@@ -11,5 +11,6 @@
     android:translationY="10dp"
     android:visibility="visible"
     tools:ignore="MergeRootFrame"
-    tools:visibility="visible" />
+    tools:visibility="visible"
+    tools:targetApi="ice_cream_sandwich" />
  
