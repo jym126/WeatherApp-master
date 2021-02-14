@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 import com.redorigami.simpleweather.R;
 
-public class WeatherActivity extends AppCompatActivity implements Runnable {
+public class WeatherActivity extends AppCompatActivity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +38,16 @@ public class WeatherActivity extends AppCompatActivity implements Runnable {
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 	    if(item.getItemId() == R.id.change_city){
-	        run();
+	        showInputDialog();
 	    }
 	    return false;
 		
 	}
 
 
-	public void run() {
+	public void showInputDialog() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Choose City");
+		builder.setTitle("Elige ciudad");
 		final EditText input = new EditText(this);
 		input.setInputType(InputType.TYPE_CLASS_TEXT);
 		builder.setView(input);

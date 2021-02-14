@@ -93,7 +93,7 @@ public class WeatherFragment extends Fragment {
 	        detailsField.setText(
 	                details.getString("description").toUpperCase(Locale.US) +
 	                "\n" + "Humedad: " + main.getString("humidity") + "%" +
-	                "\n" + "Presion: " + main.getString("pressure") + " hPa");
+	                "\n" + "Presión: " + main.getString("pressure") + " hPa");
 	         
 	        currentTemperatureField.setText(
 	                    String.format("%.2f", main.getDouble("temp"))+ " ℃");
@@ -102,10 +102,10 @@ public class WeatherFragment extends Fragment {
 	        String updatedOn = df.format(new Date(json.getLong("dt")*1000));
 	        updatedField.setText("Actualizado: " + updatedOn);
 	 
-	        /*setWeatherIcon(details.getInt("id"),
+	        setWeatherIcon(details.getInt("id"),
 	                json.getJSONObject("sys").getLong("sunrise") * 1000,
 	                json.getJSONObject("sys").getLong("sunset") * 1000);
-	         */
+
 	    }catch(Exception e){
 	        Log.e("SimpleWeather", "Field not present in JSON Received");
 	    }
