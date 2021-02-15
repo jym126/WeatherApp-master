@@ -28,6 +28,8 @@ public class WeatherFragment extends Fragment {
     private TextView updatedField;
 	private TextView currentTemperatureField;
 	private TextView detailsField;
+	private String descripcion;
+	private String descripcion1;
      
     Handler handler;
  
@@ -84,23 +86,36 @@ public class WeatherFragment extends Fragment {
 	
 	private void renderWeather(JSONObject json){
 	    try {
-	        cityField.setText(json.getString("name").toUpperCase(Locale.US) + 
-	                ", " + 
-	                json.getJSONObject("sys").getString("country"));
-	         
-	        JSONObject details = json.getJSONArray("weather").getJSONObject(0);
-	        JSONObject main = json.getJSONObject("main");
+			cityField.setText(String.format("%s, %s", json.getString("name").toUpperCase(Locale.US), json.getJSONObject("sys").getString("country")));
+
+			JSONObject details = json.getJSONArray("weather").getJSONObject(0);
+			JSONObject main = json.getJSONObject("main");
+
+			descripcion = details.getString("description");
+			descripcion1 = descripcion.toUpperCase(Locale.US);
+			if (descripcion1.equals("FEW CLOUDS")){
+				descripcion1 = "pocasNubes";}
+			else if (descripcion1.equals("CLEAR SKY")){
+				descripcion1 = "Cielos Claros";}
+			else if (descripcion1.equals("OVERCAST CLOUDS")){
+				descripcion1 = "Nublado";}
+			else if (descripcion1.equals("LIGHT RAIN")){
+				descripcion1 = "Lluvia Ligera";}
+			else if (descripcion1.equals("SCATTERED CLOUDS")){
+				descripcion1 = "Nubes Dispersas";}
+			else if (descripcion1.equals("LIGHT SNOW")){
+				descripcion1 = "Nieve Ligera";}
+
+
 	        detailsField.setText(
-	                details.getString("description").toUpperCase(Locale.US) +
-	                "\n" + "Humedad: " + main.getString("humidity") + "%" +
-	                "\n" + "Presión: " + main.getString("pressure") + " hPa");
+					String.format("%s\nHumedad: %s%%\nPresión: %s hPa", descripcion1, main.getString("humidity"), main.getString("pressure")));
 	         
 	        currentTemperatureField.setText(
-	                    String.format("%.2f", main.getDouble("temp"))+ " ℃");
+					String.format("%s ℃", String.format("%.2f", main.getDouble("temp"))));
 	 
 	        DateFormat df = DateFormat.getDateTimeInstance();
 	        String updatedOn = df.format(new Date(json.getLong("dt")*1000));
-	        updatedField.setText("Actualizado: " + updatedOn);
+	        updatedField.setText(String.format("Actualizado: %s", updatedOn));
 	 
 	        setWeatherIcon(details.getInt("id"),
 	                json.getJSONObject("sys").getLong("sunrise") * 1000,
